@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aditi Mahavidyalaya Voicebox — Students' Union</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --maroon:#7A2048;
+    --maroon-dark:#4C1230;
+    --cream:#FBF4E8;
+    --cream-2:#F3E8D4;
+    --mustard:#E8A33D;
+    --mustard-dark:#B87A20;
+    --ink:#2B1420;
+    --ink-soft:#6B4A57;
+    --line:#E3D3C2;
+    --good:#3C6E4A;
+    --warn:#B8600B;
+    --urgent:#B23A3A;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:'Space Grotesk',sans-serif;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:520px;margin:0 auto;padding:0 0 4rem;}
+
+  .hero{background:var(--maroon);color:var(--cream);padding:2.4rem 1.5rem 4.2rem;position:relative;overflow:hidden;}
+  .hero::after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;background:var(--maroon-dark);opacity:.5;}
+  .hero::before{content:"";position:absolute;left:-60px;bottom:-70px;width:160px;height:160px;border-radius:50%;background:var(--mustard);opacity:.14;}
+  .eyebrow{position:relative;font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--mustard);margin:0 0 .6rem;}
+  .credit-block{position:relative;margin:0 0 1.1rem;}
+  .credit-block .cl1{font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#EDD9C9;opacity:.85;margin-bottom:7px;}
+  .credit-block .cl3{font-size:13px;font-weight:500;color:var(--mustard);letter-spacing:.02em;margin-bottom:4px;}
+  .credit-block .cl2{font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:1.7rem;line-height:1.15;color:var(--cream);}
+  .hero h1{position:relative;font-family:'Fraunces',serif;font-weight:600;font-size:2.5rem;line-height:1.05;margin:0 0 .7rem;}
+  .hero h1 em{font-style:italic;color:var(--mustard);}
+  .hero p{position:relative;font-size:15px;line-height:1.55;color:#EDD9C9;margin:0;max-width:38ch;}
+  .hero .tag{position:relative;display:inline-flex;align-items:center;gap:8px;margin-top:1.3rem;font-size:13px;color:var(--cream);background:rgba(255,255,255,.1);border:0.5px solid rgba(255,255,255,.25);padding:6px 12px;border-radius:99px;}
+  .tag .dot{width:7px;height:7px;border-radius:50%;background:#7FDB92;}
+
+  .hero-opress{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:1rem;
+    padding:5px 12px 5px 8px;
+    background:rgba(255,255,255,.08);
+    border:0.5px solid rgba(255,255,255,.22);
+    border-radius:99px;
+    color:var(--cream);
+    text-decoration:none;
+    font-size:12.5px;
+    font-weight:600;
+    transition:background .15s ease, border-color .15s ease;
+  }
+  .hero-opress:hover{
+    background:rgba(255,255,255,.16);
+    border-color:rgba(255,255,255,.4);
+  }
+  .hero-opress-logo{
+    height:22px;
+    width:auto;
+    max-width:70px;
+    object-fit:contain;
+    display:block;
+    border-radius:4px;
+  }
+  .hero-opress-fallback{
+    display:none;
+    width:22px;
+    height:22px;
+    border-radius:6px;
+    background:var(--mustard);
+    color:var(--maroon-dark);
+    font-family:'Fraunces',serif;
+    font-size:12px;
+    font-weight:700;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .hero-opress-text{color:#EDD9C9;letter-spacing:.01em;}
+  .hero-opress-text b{color:var(--mustard);font-weight:700;}
+
+  .panel{background:#fff;margin:-2.6rem 1.2rem 0;border-radius:20px;box-shadow:0 14px 30px -18px rgba(76,18,48,.35);border:0.5px solid var(--line);overflow:hidden;position:relative;}
+
+  .banner-strip{position:relative;display:none;background:var(--cream-2);border-bottom:0.5px solid var(--line);}
+  .banner-strip.show{display:block;}
+  .banner-viewport{overflow:hidden;}
+  .banner-track{display:flex;transition:transform .55s cubic-bezier(.22,1,.36,1);will-change:transform;}
+  .banner-slide{position:relative;flex:0 0 100%;overflow:hidden;}
+  .banner-slide.linked{cursor:pointer;}
+  .banner-slide.linked:focus-visible{outline:3px solid var(--mustard);outline-offset:-3px;}
+  .banner-slide img{width:100%;display:block;aspect-ratio:16/6;object-fit:cover;background:var(--cream-2);}
+  .banner-shade{position:absolute;left:0;right:0;bottom:0;height:70%;background:linear-gradient(to top,rgba(28,10,18,.80),rgba(28,10,18,0));pointer-events:none;}
+  .banner-cap{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding:11px 13px;pointer-events:none;}
+  .banner-cap-text{min-width:0;}
+  .banner-title{font-size:13.5px;font-weight:700;color:#fff;line-height:1.25;}
+  .banner-arrow{color:var(--mustard);font-size:12px;}
+  .banner-sub{font-size:11.5px;color:rgba(255,255,255,.86);margin-top:2px;line-height:1.35;}
+  .banner-dots{display:flex;gap:5px;align-items:center;pointer-events:auto;flex-shrink:0;padding-bottom:2px;}
+  .banner-dot{width:7px;height:7px;border-radius:50%;border:none;padding:0;background:rgba(255,255,255,.5);cursor:pointer;transition:all .2s ease;}
+  .banner-dot.on{background:#fff;width:18px;border-radius:99px;}
+  .banner-dot:focus-visible{outline:2px solid var(--mustard);outline-offset:2px;}
+
+  .tabs{display:flex;border-bottom:0.5px solid var(--line);}
+  .tab{flex:1;padding:.95rem .25rem;text-align:center;font-size:12.5px;line-height:1.25;font-weight:600;color:var(--ink-soft);background:none;border:none;cursor:pointer;position:relative;}
+  .tab.active{color:var(--maroon);}
+  .tab.active::after{content:"";position:absolute;left:14%;right:14%;bottom:0;height:3px;border-radius:3px 3px 0 0;background:var(--mustard);}
+
+  .content{padding:1.5rem 1.4rem 1.8rem;}
+
+  .pulse-row{display:flex;gap:8px;margin-bottom:1.3rem;}
+  .pulse{flex:1;background:var(--cream-2);border-radius:12px;padding:9px 6px;text-align:center;}
+  .pulse .n{font-family:'Fraunces',serif;font-size:18px;color:var(--maroon);}
+  .pulse .l{font-size:10px;color:var(--ink-soft);font-weight:600;line-height:1.3;}
+
+  .field{margin-bottom:1.1rem;}
+  .field label{display:block;font-size:12.5px;font-weight:600;color:var(--ink-soft);margin-bottom:6px;}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;}
+  .chip{padding:7px 13px;border-radius:99px;border:1.3px solid var(--line);background:var(--cream);font-size:13px;font-weight:500;color:var(--ink-soft);cursor:pointer;transition:all .12s ease;}
+  .chip.sel{background:var(--maroon);border-color:var(--maroon);color:#fff;}
+  .chip.urg.sel[data-lvl="urgent"]{background:var(--urgent);border-color:var(--urgent);}
+  .chip.urg.sel[data-lvl="attention"]{background:var(--warn);border-color:var(--warn);}
+  .chip.urg.sel[data-lvl="routine"]{background:var(--good);border-color:var(--good);}
+
+  textarea, input[type=text]{width:100%;border:1.3px solid var(--line);border-radius:12px;padding:12px 13px;font-family:'Space Grotesk',sans-serif;font-size:14.5px;color:var(--ink);background:var(--cream);resize:vertical;min-height:100px;}
+  input[type=text]{min-height:unset;}
+  textarea:focus, input[type=text]:focus{outline:none;border-color:var(--maroon);background:#fff;}
+  .counter{font-size:11.5px;color:var(--ink-soft);text-align:right;margin-top:4px;}
+
+  .hint-box{background:#FDF0DD;border:1px solid var(--mustard-dark);border-radius:12px;padding:10px 12px;font-size:12.5px;color:var(--warn);margin-bottom:1rem;display:none;line-height:1.5;}
+  .hint-box.show{display:block;}
+
+  .anon-note{display:flex;gap:10px;align-items:flex-start;background:var(--cream-2);border-radius:12px;padding:11px 13px;font-size:12.5px;line-height:1.5;color:var(--ink-soft);margin-bottom:1.2rem;}
+  .anon-note .ic{flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--good);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-top:1px;}
+  .anon-note b{color:var(--maroon);}
+
+  .upload-box{border:1.6px dashed var(--line);border-radius:12px;padding:16px;text-align:center;cursor:pointer;background:var(--cream);transition:border-color .12s;}
+  .upload-box:hover{border-color:var(--maroon);}
+  .upload-box .up-ic{font-size:22px;margin-bottom:4px;}
+  .upload-box .up-txt{font-size:12.5px;color:var(--ink-soft);}
+  .upload-box .up-sub{font-size:11px;color:var(--ink-soft);opacity:.8;margin-top:2px;}
+  #fileInput{display:none;}
+  .img-preview{position:relative;margin-top:10px;}
+  .img-preview img{width:100%;max-height:200px;object-fit:cover;border-radius:12px;display:block;}
+  .img-remove{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;border:none;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .compress-note{font-size:11px;color:var(--ink-soft);margin-top:5px;}
+
+  button.submit{width:100%;background:var(--maroon);color:#fff;border:none;border-radius:12px;padding:14px;font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:transform .08s ease, background .15s ease;}
+  button.submit:active{transform:scale(.98);}
+  button.submit:hover{background:var(--maroon-dark);}
+  button.submit:disabled{opacity:.55;cursor:not-allowed;}
+
+  .error-text{color:#B23A3A;font-size:12.5px;margin-top:5px;}
+
+  .success{text-align:center;padding:1.5rem .5rem 1rem;}
+  .success .badge{width:56px;height:56px;margin:0 auto 1rem;border-radius:50%;background:var(--good);color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;}
+  .success h3{font-family:'Fraunces',serif;font-size:20px;margin:0 0 .5rem;}
+  .success p{font-size:13.5px;color:var(--ink-soft);line-height:1.6;margin:0 0 1.3rem;}
+  .track-id{display:inline-block;font-family:'Space Grotesk',monospace;background:var(--cream-2);border:1px dashed var(--mustard-dark);padding:8px 16px;border-radius:10px;font-size:15px;font-weight:700;letter-spacing:.03em;color:var(--maroon);margin-bottom:1.3rem;}
+  .ghost-btn{background:none;border:1.3px solid var(--line);border-radius:12px;padding:11px 18px;font-size:13.5px;font-weight:600;color:var(--maroon);cursor:pointer;}
+
+  .track-result{margin-top:1rem;border:1.3px solid var(--line);border-radius:14px;padding:14px 15px;}
+  .status-pill{display:inline-block;font-size:11.5px;font-weight:700;padding:4px 11px;border-radius:99px;text-transform:lowercase;}
+  .status-received{background:#F3E3C6;color:#8A5A0C;}
+  .status-review{background:#DCE7F5;color:#1C4E8A;}
+  .status-resolved{background:#D8EEDD;color:var(--good);}
+  .reply-box{margin-top:12px;background:var(--cream-2);border-radius:10px;padding:10px 12px;}
+  .reply-box .rl{font-size:10.5px;font-weight:700;color:var(--maroon);text-transform:uppercase;letter-spacing:.03em;margin-bottom:4px;}
+  .reply-box .rt{font-size:13px;line-height:1.5;color:var(--ink);}
+  .track-media img{width:100%;border-radius:10px;margin-top:8px;display:block;}
+  .track-media a{font-size:12.5px;color:var(--maroon);font-weight:600;}
+
+  .union-intro{font-size:12.5px;color:var(--ink-soft);line-height:1.55;margin:0 0 1.2rem;}
+  .union-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+  .union-card{
+    background:var(--cream);
+    border:0.5px solid var(--line);
+    border-radius:16px;
+    overflow:hidden;
+    text-align:center;
+    padding-bottom:11px;
+    display:flex;
+    flex-direction:column;
+  }
+  .union-card.lead{grid-column:1 / -1;}
+  .union-photo{
+    position:relative;
+    width:100%;
+    aspect-ratio:1 / 1;
+    background:var(--cream-2);
+    border-bottom:0.5px solid var(--line);
+    overflow:hidden;
+  }
+  .union-card.lead .union-photo{aspect-ratio:16 / 9;}
+  .union-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+  .union-photo-empty{
+    position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-weight:600;
+    font-size:30px;color:var(--maroon);opacity:.45;
+    letter-spacing:.02em;
+  }
+  .union-card.lead .union-photo-empty{font-size:46px;}
+  .union-name{font-size:13.5px;font-weight:700;color:var(--ink);margin:9px 9px 2px;line-height:1.25;}
+  .union-card.lead .union-name{font-size:16px;font-family:'Fraunces',serif;font-weight:600;}
+  .union-role{font-size:11.5px;color:var(--ink-soft);margin:0 9px 8px;line-height:1.35;}
+  .union-card.lead .union-role{font-size:12.5px;}
+  .union-note{font-size:10.5px;font-weight:600;color:var(--warn);}
+  .party-tag{display:inline-block;align-self:center;margin-top:auto;font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#8A5A0C;background:#FBEEDC;border:1px solid #EBCFA4;padding:4px 9px;border-radius:99px;}
+
+  .admin-lock{padding:2.5rem 1.5rem;text-align:center;}
+  .admin-lock .k{width:52px;height:52px;margin:0 auto 1rem;border-radius:14px;background:var(--cream-2);display:flex;align-items:center;justify-content:center;font-size:22px;}
+  .admin-lock h3{font-family:'Fraunces',serif;font-size:19px;margin:0 0 .4rem;}
+  .admin-lock p{font-size:13px;color:var(--ink-soft);margin:0 0 1.2rem;}
+
+  .filter-row{display:flex;gap:6px;margin-bottom:1rem;overflow-x:auto;padding-bottom:2px;}
+  .fchip{white-space:nowrap;padding:6px 12px;border-radius:99px;border:1.3px solid var(--line);font-size:12px;font-weight:600;color:var(--ink-soft);background:var(--cream);cursor:pointer;}
+  .fchip.sel{background:var(--maroon);border-color:var(--maroon);color:#fff;}
+
+  .entry{border-bottom:0.5px solid var(--line);padding:14px 0;}
+  .entry:last-child{border-bottom:none;}
+  .entry-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;}
+  .entry-cat{font-size:11.5px;font-weight:700;color:var(--maroon);background:var(--cream-2);padding:3px 9px;border-radius:99px;}
+  .urg-pill{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:99px;}
+  .urg-urgent{background:#F8DADA;color:var(--urgent);}
+  .urg-attention{background:#FBE7CC;color:var(--warn);}
+  .urg-routine{background:#DCEEE0;color:var(--good);}
+
+  .safety-btn{
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#FDECEC;
+    border:1.5px solid #E8A9A9;
+    border-radius:14px;
+    padding:12px 14px;
+    margin-bottom:1.2rem;
+    cursor:pointer;
+    text-align:left;
+  }
+  .safety-btn .sic{font-size:20px;}
+  .safety-btn .stxt{flex:1;}
+  .safety-btn .stxt .st1{display:block;font-size:13.5px;font-weight:700;color:var(--urgent);}
+  .safety-btn .stxt .st2{display:block;font-size:11.5px;color:var(--ink-soft);margin-top:1px;}
+  .helpline-box{
+    background:#FDECEC;
+    border:1px solid #E8A9A9;
+    border-radius:12px;
+    padding:12px 13px;
+    font-size:12.5px;
+    color:var(--urgent);
+    line-height:1.7;
+    margin-bottom:1.2rem;
+    display:none;
+  }
+  .helpline-box.show{display:block;}
+  .helpline-box b{display:block;margin-bottom:3px;}
+
+  .delete-btn{
+    background:none;
+    border:none;
+    color:var(--urgent);
+    font-size:12px;
+    font-weight:600;
+    cursor:pointer;
+    padding:0;
+    margin-top:8px;
+    margin-left:14px;
+  }
+  .confirm-row{display:flex;gap:6px;align-items:center;margin-top:8px;font-size:12px;color:var(--ink-soft);}
+  .confirm-row button{border:none;border-radius:8px;padding:5px 10px;font-size:11.5px;font-weight:600;cursor:pointer;}
+  .confirm-yes{background:var(--urgent);color:#fff;}
+  .confirm-no{background:var(--line);color:var(--ink);}
+  .entry-id{font-size:11px;color:var(--ink-soft);font-family:monospace;}
+  .entry-text{font-size:14px;line-height:1.55;margin:0 0 8px;color:var(--ink);}
+  .contact-pill{display:inline-block;font-size:11.5px;font-weight:600;color:var(--good);background:#E3F1E7;padding:4px 10px;border-radius:99px;margin-bottom:8px;}
+  .entry-media img{width:100%;max-height:220px;object-fit:cover;border-radius:10px;margin-bottom:8px;display:block;cursor:pointer;}
+  .entry-media a{display:inline-block;font-size:12.5px;color:var(--maroon);font-weight:600;margin-bottom:8px;}
+  .entry-meta{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;}
+  .entry-date{font-size:11px;color:var(--ink-soft);}
+  select.status-select{font-size:11.5px;font-weight:600;border-radius:99px;padding:5px 10px;border:1.3px solid var(--line);background:var(--cream);color:var(--ink);}
+  .reply-toggle{font-size:12px;color:var(--maroon);font-weight:600;background:none;border:none;cursor:pointer;padding:0;margin-top:8px;}
+  .reply-input-row{display:flex;gap:6px;margin-top:8px;}
+  .reply-input-row input{flex:1;border:1.3px solid var(--line);border-radius:10px;padding:8px 10px;font-size:13px;background:var(--cream);}
+  .reply-input-row button{background:var(--maroon);color:#fff;border:none;border-radius:10px;padding:0 14px;font-size:12.5px;font-weight:600;cursor:pointer;}
+  .existing-reply{background:var(--cream-2);border-radius:10px;padding:8px 10px;margin-top:8px;font-size:12.5px;color:var(--ink-soft);}
+  .existing-reply b{color:var(--maroon);}
+
+  .empty{text-align:center;padding:2.5rem 1rem;color:var(--ink-soft);font-size:13.5px;}
+  .stat-row{display:flex;gap:8px;padding:0 0 1rem;}
+  .stat{flex:1;background:var(--cream-2);border-radius:12px;padding:10px 8px;text-align:center;}
+  .stat .n{font-family:'Fraunces',serif;font-size:20px;color:var(--maroon);}
+  .stat .l{font-size:10.5px;color:var(--ink-soft);font-weight:600;}
+
+  .powered{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:9px;
+    margin-top:1.2rem;
+    padding:0 1.5rem;
+  }
+  .powered-logo{
+    height:30px;
+    width:auto;
+    max-width:120px;
+    object-fit:contain;
+    display:block;
+    border-radius:6px;
+  }
+  .powered-logo-fallback{
+    display:none;
+    height:30px;
+    min-width:30px;
+    padding:0 8px;
+    border-radius:8px;
+    background:var(--maroon);
+    color:var(--cream);
+    font-family:'Fraunces',serif;
+    font-size:15px;
+    font-weight:700;
+    align-items:center;
+    justify-content:center;
+    letter-spacing:.02em;
+  }
+  .powered-text{
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.01em;
+    white-space:nowrap;
+  }
+  .powered-text b{color:var(--maroon);font-weight:700;}
+
+  input[type=password]{width:100%;border:1.3px solid var(--line);border-radius:12px;padding:12px 13px;font-size:15px;text-align:center;letter-spacing:.15em;margin-bottom:12px;background:var(--cream);}
+  input[type=password]:focus{outline:none;border-color:var(--maroon);}
+
+  .lightbox{position:fixed;inset:0;background:rgba(20,8,14,.85);display:none;align-items:center;justify-content:center;z-index:999;padding:20px;}
+  .lightbox.show{display:flex;}
+  .lightbox img{max-width:100%;max-height:90vh;border-radius:10px;}
+
+  @media (prefers-reduced-motion: reduce){
+    .banner-track{transition:none;}
+    *{scroll-behavior:auto !important;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="credit-block">
+      <div class="cl1">Aditi Mahavidyalaya</div>
+      <div class="cl2">Students' Union</div>
+      <div class="cl3">Elected office bearers &middot; 2026&ndash;27</div>
+    </div>
+    <h1>Say it straight.<br><em>Stay anonymous.</em></h1>
+    <p>A direct, no-names line to the Students' Union — for anything on campus that needs fixing, or any idea worth trying. Attach a photo. Get a real reply.</p>
+    <div class="tag"><span class="dot"></span>No login. No name. No trace.</div>
+
+    <a class="hero-opress" href="https://www.google.com/search?q=opress" target="_blank" rel="noopener noreferrer">
+      <img
+        class="hero-opress-logo"
+        src="/images/opress-logo.png"
+        alt="Opress"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <span class="hero-opress-fallback">O</span>
+      <span class="hero-opress-text">Powered by <b>Opress</b></span>
+    </a>
+  </div>
+
+  <div class="panel">
+    <div class="banner-strip" id="bannerStrip" aria-label="Promotions"></div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="submit">Submit</button>
+      <button class="tab" data-tab="track">Track</button>
+      <button class="tab" data-tab="union">Know Your Union</button>
+      <button class="tab" data-tab="admin">Union desk</button>
+    </div>
+    <div class="content" id="content"></div>
+  </div>
+
+  <div class="powered">
+    <img
+      class="powered-logo"
+      id="opressLogo"
+      src="/images/opress-logo.png"
+      alt="Opress"
+      onerror="this.style.display='none';document.getElementById('opressFallback').style.display='flex';">
+    <span class="powered-logo-fallback" id="opressFallback">O</span>
+    <span class="powered-text">Powered by <b>Opress</b></span>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox"><img id="lightboxImg" src="" alt=""></div>
+
+<script>
+const CATS = ["Academics","Hostel/Mess","Infrastructure","Faculty","Canteen","Washrooms","Sports","Library","Girls Safety","Other"];
+const URGENCY = [
+  {v:"routine", l:"Routine"},
+  {v:"attention", l:"Needs attention"},
+  {v:"urgent", l:"Urgent"}
+];
+
+const TEAM = [
+  { name: "Sona",           role: "President",          party: "ABVP", photo: null },
+  { name: "Laxvi",          role: "Secretary",          party: "ABVP", photo: null },
+  { name: "Deepika Khatri", role: "Joint Secretary",    party: "ABVP", photo: null },
+  { name: "Diksha",         role: "Central Councillor", party: "ABVP", note: "Unopposed", photo: null }
+];
+
+const HELPLINES = [
+  { label: "Emergency (police / fire / ambulance)", number: "112" },
+  { label: "Women's Helpline", number: "181" },
+  { label: "Aditi Mahavidyalaya Campus Security", number: "" }
+];
+
+let selectedCat = null;
+let selectedUrgency = "attention";
+let currentTab = 'submit';
+let attachedImage = null;
+let adminToken = null;
+let adminFilter = "all";
+
+function esc(s){
+  return String(s == null ? '' : s)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#39;');
+}
+
+function genId(){
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  let s = "";
+  for(let i=0;i<6;i++) s += chars[Math.floor(Math.random()*chars.length)];
+  return "AMV-" + s;
+}
+
+function initials(name){
+  return String(name || '')
+    .trim().split(/\s+/).map(w => w[0]).slice(0,2).join('').toUpperCase();
+}
+
+let BANNERS = [];
+let bannerIdx = 0;
+let bannerTimer = null;
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+async function loadBanners(){
+  try{
+    const res = await fetch('/banners.json', { cache: 'no-store' });
+    if(!res.ok) throw new Error('no banners file');
+    const data = await res.json();
+    const list = Array.isArray(data) ? data
+               : (data && Array.isArray(data.banners) ? data.banners : []);
+    BANNERS = list.filter(b => b && typeof b.image === 'string' && b.image.trim() && b.active !== false);
+  }catch(e){
+    BANNERS = [];
+  }
+  paintBanners();
+}
+
+function paintBanners(){
+  const strip = document.getElementById('bannerStrip');
+  if(!strip) return;
+  clearInterval(bannerTimer);
+
+  if(!BANNERS.length){
+    strip.classList.remove('show');
+    strip.innerHTML = '';
+    return;
+  }
+
+  strip.classList.add('show');
+  bannerIdx = 0;
+
+  strip.innerHTML = `
+    <div class="banner-viewport" id="bannerViewport">
+      <div class="banner-track" id="bannerTrack">
+        ${BANNERS.map((b, i) => `
+          <div class="banner-slide${b.link ? ' linked' : ''}"
+               data-i="${i}"
+               ${b.link ? 'tabindex="0" role="link"' : ''}
+               aria-label="${esc(b.alt || b.title || ('Banner ' + (i+1)))}">
+            <img src="${esc(b.image)}" alt="${esc(b.alt || b.title || '')}" loading="${i === 0 ? 'eager' : 'lazy'}">
+            <div class="banner-shade"></div>
+            <div class="banner-cap">
+              <div class="banner-cap-text">
+                ${b.title ? `<div class="banner-title">${esc(b.title)}${b.link ? ' <span class="banner-arrow">&#8599;</span>' : ''}</div>` : ''}
+                ${b.subtitle ? `<div class="banner-sub">${esc(b.subtitle)}</div>` : ''}
+              </div>
+              ${BANNERS.length > 1 ? `<div class="banner-dots">${
+                BANNERS.map((_, k) => `<button type="button" class="banner-dot${k === 0 ? ' on' : ''}" data-i="${k}" aria-label="Go to banner ${k+1}"></button>`).join('')
+              }</div>` : ''}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+
+  const track    = strip.querySelector('#bannerTrack');
+  const viewport = strip.querySelector('#bannerViewport');
+
+  const go = (i) => {
+    bannerIdx = (i + BANNERS.length) % BANNERS.length;
+    track.style.transform = `translateX(-${bannerIdx * 100}%)`;
+    strip.querySelectorAll('.banner-dot').forEach((d, k) => d.classList.toggle('on', k === bannerIdx));
+  };
+
+  const restart = () => {
+    clearInterval(bannerTimer);
+    if(reduceMotion || BANNERS.length < 2) return;
+    bannerTimer = setInterval(() => go(bannerIdx + 1), 6000);
+  };
+
+  strip.querySelectorAll('.banner-slide').forEach(slide => {
+    const open = () => {
+      const b = BANNERS[Number(slide.dataset.i)];
+      if(!b || !b.link) return;
+      window.open(b.link, '_blank', 'noopener,noreferrer');
+    };
+    slide.addEventListener('click', open);
+    slide.addEventListener('keydown', (ev) => {
+      if(ev.key === 'Enter' || ev.key === ' '){ ev.preventDefault(); open(); }
+    });
+  });
+
+  strip.querySelectorAll('.banner-dot').forEach(dot => {
+    dot.addEventListener('click', (ev) => {
+      ev.stopPropagation();
+      go(Number(dot.dataset.i));
+      restart();
+    });
+  });
+
+  let x0 = null;
+  viewport.addEventListener('touchstart', (ev) => {
+    x0 = ev.touches[0].clientX;
+    clearInterval(bannerTimer);
+  }, { passive: true });
+  viewport.addEventListener('touchend', (ev) => {
+    if(x0 === null) return;
+    const dx = ev.changedTouches[0].clientX - x0;
+    if(Math.abs(dx) > 40) go(bannerIdx + (dx < 0 ? 1 : -1));
+    x0 = null;
+    restart();
+  }, { passive: true });
+
+  strip.addEventListener('mouseenter', () => clearInterval(bannerTimer));
+  strip.addEventListener('mouseleave', restart);
+
+  restart();
+}
+
+async function getAllEntries(opts = {}){
+  try{
+    const url = '/api/entries' + (opts.meta ? '?meta=1' : '');
+    const headers = {};
+    if(opts.admin && adminToken) headers['Authorization'] = 'Bearer ' + adminToken;
+    const res = await fetch(url, { headers });
+    if(res.status === 401 && opts.admin){ adminToken = null; renderAdminLock(); return []; }
+    if(!res.ok) return [];
+    const data = await res.json();
+    return Array.isArray(data) ? data : [];
+  }catch(e){ return []; }
+}
+
+async function saveEntry(entry){
+  try{
+    const res = await fetch('/api/entries', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(entry)
+    });
+    if(res.ok) return { ok: true };
+    let msg = 'Could not send.';
+    try{
+      const data = await res.json();
+      if(data.error === 'image too large') msg = 'That photo is too large even after compression — try a smaller one.';
+      else if(data.error === 'invalid image') msg = "That file isn't a readable image — try a JPG or PNG.";
+    }catch(e){}
+    return { ok: false, msg };
+  }catch(e){
+    return { ok: false, msg: 'Network error — check your connection.' };
+  }
+}
+
+async function getEntry(id){
+  try{
+    const res = await fetch('/api/entry?id=' + encodeURIComponent(id));
+    if(!res.ok) return null;
+    return await res.json();
+  }catch(e){ return null; }
+}
+
+async function updateEntry(id, patch){
+  try{
+    const res = await fetch('/api/entry?id=' + encodeURIComponent(id), {
+      method: 'PATCH',
+      headers: {
+        'Content-Type':'application/json',
+        'Authorization': 'Bearer ' + adminToken
+      },
+      body: JSON.stringify(patch)
+    });
+    if(res.status === 401){ adminToken = null; renderAdminLock(); return false; }
+    return res.ok;
+  }catch(e){ return false; }
+}
+
+async function deleteEntry(id){
+  try{
+    const res = await fetch('/api/entry?id=' + encodeURIComponent(id), {
+      method: 'DELETE',
+      headers: { 'Authorization': 'Bearer ' + adminToken }
+    });
+    if(res.status === 401){ adminToken = null; renderAdminLock(); return false; }
+    return res.ok;
+  }catch(e){ return false; }
+}
+
+function timeAgo(ts){
+  const s = Math.floor((Date.now() - (ts || 0))/1000);
+  if(s < 60) return "just now";
+  if(s < 3600) return Math.floor(s/60)+"m ago";
+  if(s < 86400) return Math.floor(s/3600)+"h ago";
+  return Math.floor(s/86400)+"d ago";
+}
+
+function loadImage(src){
+  return new Promise((resolve, reject)=>{
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => reject(new Error('decode_failed'));
+    img.src = src;
+  });
+}
+
+function drawToDataUrl(img, maxDim, quality){
+  let w = img.width, h = img.height;
+  if(w > h && w > maxDim){ h = Math.round(h * maxDim / w); w = maxDim; }
+  else if(h > maxDim){ w = Math.round(w * maxDim / h); h = maxDim; }
+  const canvas = document.createElement('canvas');
+  canvas.width = w; canvas.height = h;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0, 0, w, h);
+  ctx.drawImage(img, 0, 0, w, h);
+  return canvas.toDataURL('image/jpeg', quality);
+}
+
+async function compressImage(file){
+  if(!file.type || !file.type.startsWith('image/')) throw new Error('not_an_image');
+  if(file.size > 25 * 1024 * 1024) throw new Error('too_large');
+
+  const raw = await new Promise((resolve, reject)=>{
+    const r = new FileReader();
+    r.onload = e => resolve(e.target.result);
+    r.onerror = () => reject(new Error('read_failed'));
+    r.readAsDataURL(file);
+  });
+
+  const img = await loadImage(raw);
+
+  const MAX = 900;
+  let quality = 0.62;
+  let out = drawToDataUrl(img, MAX, quality);
+
+  while(out.length > 700000 && quality > 0.3){
+    quality -= 0.1;
+    out = drawToDataUrl(img, MAX, quality);
+  }
+  if(out.length > 700000) out = drawToDataUrl(img, 600, 0.5);
+
+  return out;
+}
+
+function keywordOverlap(a, b){
+  const norm = s => s.toLowerCase().replace(/[^a-z0-9\s]/g,'').split(/\s+/).filter(w=>w.length>3);
+  const wa = new Set(norm(a));
+  let hits = 0;
+  norm(b).forEach(w=>{ if(wa.has(w)) hits++; });
+  return hits;
+}
+
+async function checkSimilar(category, text){
+  if(text.trim().length < 8) return 0;
+  const all = await getAllEntries({ meta: true });
+  const recent = all.filter(e =>
+    e.category === category && (Date.now() - (e.ts || 0)) < 1000*60*60*24*30
+  );
+  let count = 0;
+  recent.forEach(e=>{ if(keywordOverlap(text, e.text || '') >= 3) count++; });
+  return count;
+}
+
+function helplineHtml(){
+  const rows = HELPLINES
+    .filter(h => h.number)
+    .map(h => esc(h.label) + ': <b>' + esc(h.number) + '</b>')
+    .join('<br>');
+  return '<b>If you\'re in immediate danger, call first:</b><br>' + rows +
+    '<div style="margin-top:6px;font-size:11.5px;opacity:.85;">This form isn\'t monitored around the clock — for anything happening right now, use the numbers above.</div>';
+}
+
+async function renderPulse(container){
+  if(!container) return;
+  const all = await getAllEntries({ meta: true });
+  const resolved = all.filter(e => e.status === 'resolved').length;
+  const inReview = all.filter(e => e.status === 'review').length;
+  container.innerHTML = `
+    <div class="pulse-row">
+      <div class="pulse"><div class="n">${all.length}</div><div class="l">total<br>submitted</div></div>
+      <div class="pulse"><div class="n">${inReview}</div><div class="l">being<br>worked on</div></div>
+      <div class="pulse"><div class="n">${resolved}</div><div class="l">resolved<br>so far</div></div>
+    </div>
+  `;
+}
+
+function renderSubmit(){
+  const c = document.getElementById('content');
+  attachedImage = null;
+  selectedCat = null;
+  selectedUrgency = "attention";
+
+  c.innerHTML = `
+    <div id="pulseWrap"></div>
+
+    <button type="button" class="safety-btn" id="safetyBtn">
+      <span class="sic">&#128680;</span>
+      <span class="stxt">
+        <span class="st1">Report a safety issue</span>
+        <span class="st2">One tap — files it as Urgent and shows helpline numbers</span>
+      </span>
+    </button>
+
+    <div class="helpline-box" id="helplineBox"></div>
+
+    <div class="field">
+      <label>What's this about?</label>
+      <div class="chips" id="chips">
+        ${CATS.map(cat=>`<div class="chip" data-cat="${esc(cat)}">${esc(cat)}</div>`).join('')}
+      </div>
+    </div>
+    <div class="field">
+      <label>How urgent is it?</label>
+      <div class="chips" id="urgChips">
+        ${URGENCY.map(u=>`<div class="chip urg${u.v==='attention'?' sel':''}" data-lvl="${esc(u.v)}">${esc(u.l)}</div>`).join('')}
+      </div>
+    </div>
+    <div class="field">
+      <label>Tell us what happened</label>
+      <textarea id="msg" maxlength="600" placeholder="Be as specific as you can — location, timing, what needs to change. No need to mention your name or roll number."></textarea>
+      <div class="counter"><span id="cnt">0</span>/600</div>
+      <div class="hint-box" id="dupHint"></div>
+      <div class="error-text" id="msgErr" style="display:none;"></div>
+    </div>
+    <div class="field">
+      <label>Add a photo (optional)</label>
+      <div class="upload-box" id="uploadBox">
+        <div class="up-ic">&#128247;</div>
+        <div class="up-txt">Tap to attach a photo of the issue</div>
+        <div class="up-sub">Compressed automatically &middot; location data removed</div>
+      </div>
+      <input type="file" id="fileInput" accept="image/*">
+      <div id="previewWrap"></div>
+    </div>
+    <div class="field">
+      <label>Video proof? (optional)</label>
+      <input type="text" id="videoLink" placeholder="Paste an unlisted YouTube or Drive link">
+      <div class="compress-note">Video files are too large to store directly — an unlisted link keeps it anonymous and works better anyway.</div>
+    </div>
+    <div class="field">
+      <label>Want a personal reply? Leave contact info (optional)</label>
+      <input type="text" id="contactInfo" placeholder="Phone, email, or Instagram — only if you want to be reached directly">
+      <div class="compress-note">Totally optional. Leave it blank and stay fully anonymous — you can still check updates with your tracking code either way. Only the Union desk sees this, never shown publicly.</div>
+    </div>
+    <div class="anon-note">
+      <div class="ic">i</div>
+      <div>Nothing here is linked to your account, IP, or device. Photos are re-compressed in your browser, which also strips location metadata before it's ever sent.</div>
+    </div>
+    <button class="submit" id="submitBtn">Send to the Union desk</button>
+  `;
+
+  renderPulse(c.querySelector('#pulseWrap'));
+
+  const chipEls   = c.querySelectorAll('#chips .chip');
+  const urgEls    = c.querySelectorAll('#urgChips .chip');
+  const helpline  = c.querySelector('#helplineBox');
+  const safetyBtn = c.querySelector('#safetyBtn');
+  const msg       = c.querySelector('#msg');
+  const dupHint   = c.querySelector('#dupHint');
+  const cnt       = c.querySelector('#cnt');
+  const errEl     = c.querySelector('#msgErr');
+  const submitBtn = c.querySelector('#submitBtn');
+  const uploadBox = c.querySelector('#uploadBox');
+  const fileInput = c.querySelector('#fileInput');
+  const preview   = c.querySelector('#previewWrap');
+
+  if(helpline) helpline.innerHTML = helplineHtml();
+
+  function runDupCheck(){
+    if(!selectedCat || !msg || msg.value.trim().length < 8){
+      if(dupHint) dupHint.classList.remove('show');
+      return;
+    }
+    const cat = selectedCat;
+    const text = msg.value;
+    checkSimilar(cat, text).then(n => {
+      if(!document.body.contains(dupHint)) return;
+      if(selectedCat !== cat) return;
+      if(n > 0){
+        dupHint.textContent = `Heads up — ${n} other student${n>1?'s have':' has'} raised something similar in ${cat} recently. Sending yours too still helps show it's widespread.`;
+        dupHint.classList.add('show');
+      }else{
+        dupHint.classList.remove('show');
+      }
+    });
+  }
+
+  chipEls.forEach(ch=>{
+    ch.onclick = ()=>{
+      chipEls.forEach(x=>x.classList.remove('sel'));
+      ch.classList.add('sel');
+      selectedCat = ch.dataset.cat;
+      if(helpline) helpline.classList.toggle('show', selectedCat === "Girls Safety");
+      runDupCheck();
+    };
+  });
+
+  urgEls.forEach(ch=>{
+    ch.onclick = ()=>{
+      urgEls.forEach(x=>x.classList.remove('sel'));
+      ch.classList.add('sel');
+      selectedUrgency = ch.dataset.lvl;
+    };
+  });
+
+  if(safetyBtn){
+    safetyBtn.onclick = ()=>{
+      chipEls.forEach(x=>x.classList.remove('sel'));
+      const safetyChip = [...chipEls].find(x=>x.dataset.cat === "Girls Safety");
+      if(safetyChip) safetyChip.classList.add('sel');
+      selectedCat = "Girls Safety";
+
+      urgEls.forEach(x=>x.classList.remove('sel'));
+      const urgentChip = [...urgEls].find(x=>x.dataset.lvl === 'urgent');
+      if(urgentChip) urgentChip.classList.add('sel');
+      selectedUrgency = 'urgent';
+
+      if(helpline) helpline.classList.add('show');
+      if(msg) msg.focus();
+    };
+  }
+
+  if(msg){
+    let dupTimer = null;
+    msg.oninput = ()=>{
+      if(cnt) cnt.textContent = msg.value.length;
+      clearTimeout(dupTimer);
+      dupTimer = setTimeout(runDupCheck, 600);
+    };
+  }
+
+  if(uploadBox && fileInput){
+    uploadBox.onclick = ()=> fileInput.click();
+
+    fileInput.onchange = async ()=>{
+      const file = fileInput.files && fileInput.files[0];
+      if(!file) return;
+      const label = uploadBox.querySelector('.up-txt');
+      const original = label.textContent;
+      label.textContent = "Compressing…";
+      try{
+        attachedImage = await compressImage(file);
+        preview.innerHTML = `
+          <div class="img-preview">
+            <img src="${attachedImage}" alt="Attached photo preview">
+            <button type="button" class="img-remove" id="removeImg" aria-label="Remove photo">&#10005;</button>
+          </div>
+        `;
+        preview.querySelector('#removeImg').onclick = ()=>{
+          attachedImage = null;
+          preview.innerHTML = '';
+        };
+        label.textContent = "Tap to attach a photo of the issue";
+      }catch(err){
+        attachedImage = null;
+        preview.innerHTML = '';
+        label.textContent = (err && err.message === 'decode_failed')
+          ? "That format won't open in the browser — try a JPG/PNG or a screenshot"
+          : "Couldn't read that file — try another photo";
+        setTimeout(()=>{ label.textContent = original; }, 4000);
+      }finally{
+        fileInput.value = '';
+      }
+    };
+  }
+
+  if(submitBtn){
+    submitBtn.onclick = async ()=>{
+      errEl.style.display = 'none';
+      if(!msg.value.trim()){
+        errEl.textContent = "Write your complaint or suggestion first.";
+        errEl.style.display = 'block';
+        return;
+      }
+      if(!selectedCat){
+        errEl.textContent = "Pick a category so it reaches the right person.";
+        errEl.style.display = 'block';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending…";
+
+      const entry = {
+        id: genId(),
+        category: selectedCat,
+        urgency: selectedUrgency,
+        text: msg.value.trim(),
+        image: attachedImage,
+        videoLink: c.querySelector('#videoLink').value.trim() || null,
+        contact: c.querySelector('#contactInfo').value.trim() || null,
+        status: "received",
+        reply: null,
+        ts: Date.now()
+      };
+
+      const result = await saveEntry(entry);
+      if(result.ok){
+        renderSuccess(entry.id);
+      }else{
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Send to the Union desk";
+        errEl.textContent = result.msg || "Couldn't send — try again.";
+        errEl.style.display = 'block';
+      }
+    };
+  }
+}
+
+function renderSuccess(id){
+  const c = document.getElementById('content');
+  c.innerHTML = `
+    <div class="success">
+      <div class="badge">&#10003;</div>
+      <h3>Got it, anonymously.</h3>
+      <p>Save this code to check on it later and see any reply from the Union desk. It's the only way to look it up — we keep no other record of who sent it.</p>
+      <div class="track-id">${esc(id)}</div>
+      <div><button class="ghost-btn" id="another">Submit another</button></div>
+    </div>
+  `;
+  c.querySelector('#another').onclick = ()=>{ renderSubmit(); };
+}
+
+function statusLabel(s){
+  if(s === 'review') return 'in review';
+  if(s === 'resolved') return 'resolved';
+  return 'received';
+}
+function urgLabel(u){
+  const f = URGENCY.find(x => x.v === u);
+  return f ? f.l : 'Needs attention';
+}
+
+function openLightbox(src){
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('show');
+}
+document.getElementById('lightbox').onclick = ()=> document.getElementById('lightbox').classList.remove('show');
+
+function renderTrack(){
+  const c = document.getElementById('content');
+  c.innerHTML = `
+    <div class="field">
+      <label>Your tracking code</label>
+      <input type="text" id="trackInput" placeholder="e.g. AMV-7F3K2Q" style="text-transform:uppercase;">
+      <div class="error-text" id="trackErr" style="display:none;"></div>
+    </div>
+    <button class="submit" id="trackBtn">Check status</button>
+    <div id="trackResult"></div>
+  `;
+  c.querySelector('#trackBtn').onclick = async ()=>{
+    const val = c.querySelector('#trackInput').value.trim().toUpperCase();
+    const errEl = c.querySelector('#trackErr');
+    const resEl = c.querySelector('#trackResult');
+    errEl.style.display = 'none';
+    resEl.innerHTML = '';
+
+    if(!val){
+      errEl.textContent = "Enter your tracking code first.";
+      errEl.style.display = 'block';
+      return;
+    }
+
+    const e = await getEntry(val);
+    if(!e){
+      errEl.textContent = "No entry found with that code. Double-check it.";
+      errEl.style.display = 'block';
+      return;
+    }
+
+    resEl.innerHTML = `
+      <div class="track-result">
+        <div class="entry-top">
+          <span class="entry-cat">${esc(e.category)}</span>
+          <span class="status-pill status-${esc(e.status)}">${esc(statusLabel(e.status))}</span>
+        </div>
+        <p class="entry-text">${esc(e.text)}</p>
+        <div class="track-media">
+          ${e.image ? `<img src="${esc(e.image)}" id="trackImg" alt="Attached photo">` : ''}
+          ${e.videoLink ? `<div style="margin-top:8px;"><a href="${esc(e.videoLink)}" target="_blank" rel="noopener noreferrer">Video attached &#8599;</a></div>` : ''}
+        </div>
+        <div class="entry-date" style="margin-top:8px;">Submitted ${esc(timeAgo(e.ts))}</div>
+        ${e.reply ? `<div class="reply-box"><div class="rl">Reply from the Union desk</div><div class="rt">${esc(e.reply)}</div></div>` : ''}
+      </div>
+    `;
+
+    if(e.image){
+      const img = resEl.querySelector('#trackImg');
+      if(img) img.onclick = ()=> openLightbox(e.image);
+    }
+  };
+}
+
+function renderUnion(){
+  const c = document.getElementById('content');
+
+  c.innerHTML = `
+    <p class="union-intro">
+      These are your elected Students' Union office bearers for 2026&ndash;27. Every submission sent through
+      this box is read by this desk — they decide what gets taken up with the college.
+    </p>
+    <div class="union-grid">
+      ${TEAM.map((m, i) => `
+        <div class="union-card${i === 0 ? ' lead' : ''}">
+          <div class="union-photo">
+            <div class="union-photo-empty">${esc(initials(m.name))}</div>
+            ${m.photo
+              ? `<img src="${esc(m.photo)}" alt="${esc(m.name)}" loading="lazy"
+                      onerror="this.remove()">`
+              : ''}
+          </div>
+          <div class="union-name">${esc(m.name)}${m.note ? ` <span class="union-note">(${esc(m.note)})</span>` : ''}</div>
+          <div class="union-role">${esc(m.role)}</div>
+          ${m.party ? `<span class="party-tag">${esc(m.party)}</span>` : ''}
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function renderAdminLock(){
+  const c = document.getElementById('content');
+  c.innerHTML = `
+    <div class="admin-lock">
+      <div class="k">&#128274;</div>
+      <h3>Union desk only</h3>
+      <p>This board is for the Aditi Mahavidyalaya Students' Union team to review submissions.</p>
+      <input type="password" id="adminPass" placeholder="Enter access code">
+      <button class="submit" id="unlockBtn">Unlock</button>
+      <div class="error-text" id="lockErr" style="display:none;margin-top:10px;"></div>
+    </div>
+  `;
+  const passInput = c.querySelector('#adminPass');
+  const btn = c.querySelector('#unlockBtn');
+  const errEl = c.querySelector('#lockErr');
+
+  const doUnlock = async ()=>{
+    errEl.style.display = 'none';
+    btn.disabled = true;
+    btn.textContent = "Checking…";
+    try{
+      const res = await fetch('/api/admin-login', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ password: passInput.value })
+      });
+      if(res.ok){
+        const data = await res.json();
+        adminToken = data.token;
+        renderAdmin();
+        return;
+      }
+      if(res.status === 429){
+        errEl.textContent = "Too many attempts — try again in a few minutes.";
+      }else{
+        errEl.textContent = "That code isn't right.";
+      }
+      errEl.style.display = 'block';
+    }catch(e){
+      errEl.textContent = "Couldn't reach the server — try again.";
+      errEl.style.display = 'block';
+    }
+    btn.disabled = false;
+    btn.textContent = "Unlock";
+  };
+
+  btn.onclick = doUnlock;
+  passInput.onkeydown = (e)=>{ if(e.key === 'Enter') doUnlock(); };
+}
+
+async function renderAdmin(){
+  if(!adminToken){ renderAdminLock(); return; }
+
+  const c = document.getElementById('content');
+  c.innerHTML = `<div class="empty">Loading submissions…</div>`;
+
+  const entries = await getAllEntries({ admin: true });
+  if(!adminToken) return;
+
+  const received = entries.filter(e=>e.status==='received').length;
+  const review   = entries.filter(e=>e.status==='review').length;
+  const resolved = entries.filter(e=>e.status==='resolved').length;
+
+  const filters = ["all","urgent","received","review","resolved"];
+  const filterLabel = {all:"All", urgent:"Urgent", received:"New", review:"In review", resolved:"Resolved"};
+
+  let filtered = entries;
+  if(adminFilter === "urgent") filtered = entries.filter(e => e.urgency === 'urgent');
+  else if(adminFilter !== "all") filtered = entries.filter(e => e.status === adminFilter);
+
+  c.innerHTML = `
+    <div class="stat-row">
+      <div class="stat"><div class="n">${received}</div><div class="l">new</div></div>
+      <div class="stat"><div class="n">${review}</div><div class="l">in review</div></div>
+      <div class="stat"><div class="n">${resolved}</div><div class="l">resolved</div></div>
+    </div>
+    <div class="filter-row">
+      ${filters.map(f=>`<div class="fchip ${f===adminFilter?'sel':''}" data-f="${esc(f)}">${esc(filterLabel[f])}</div>`).join('')}
+    </div>
+    <div id="entryList">
+      ${filtered.length === 0 ? `<div class="empty">No submissions in this filter yet.</div>` : filtered.map(e=>{
+        const id = esc(e.id);
+        return `
+        <div class="entry" data-id="${id}">
+          <div class="entry-top">
+            <span class="entry-cat">${esc(e.category)}</span>
+            <span class="urg-pill urg-${esc(e.urgency || 'attention')}">${esc(urgLabel(e.urgency))}</span>
+            <span class="entry-id">${id}</span>
+          </div>
+          <p class="entry-text">${esc(e.text)}</p>
+          ${e.contact ? `<div class="contact-pill">&#9993; Contact left: <b>${esc(e.contact)}</b></div>` : ''}
+          <div class="entry-media">
+            ${e.image ? `<img src="${esc(e.image)}" data-lb="${id}" alt="">` : ''}
+            ${e.videoLink ? `<a href="${esc(e.videoLink)}" target="_blank" rel="noopener noreferrer">Video attached &#8599;</a>` : ''}
+          </div>
+          <div class="entry-meta">
+            <span class="entry-date">${esc(timeAgo(e.ts))}</span>
+            <select class="status-select" data-id="${id}">
+              <option value="received" ${e.status==='received'?'selected':''}>Received</option>
+              <option value="review" ${e.status==='review'?'selected':''}>In review</option>
+              <option value="resolved" ${e.status==='resolved'?'selected':''}>Resolved</option>
+            </select>
+          </div>
+          ${e.reply ? `<div class="existing-reply"><b>Your reply:</b> ${esc(e.reply)}</div>` : ''}
+          <button class="reply-toggle" data-id="${id}">${e.reply ? 'Edit reply' : 'Add a reply'}</button>
+          <button class="delete-btn" data-id="${id}">Delete</button>
+          <div class="reply-input-row" style="display:none;" id="replyRow-${id}">
+            <input type="text" placeholder="Short update for the student…" id="replyInput-${id}" value="${esc(e.reply || '')}">
+            <button class="saveReplyBtn" data-id="${id}">Save</button>
+          </div>
+          <div id="deleteRow-${id}"></div>
+        </div>`;
+      }).join('')}
+    </div>
+  `;
+
+  c.querySelectorAll('.fchip').forEach(f=>{
+    f.onclick = ()=>{ adminFilter = f.dataset.f; renderAdmin(); };
+  });
+
+  c.querySelectorAll('.status-select').forEach(sel=>{
+    sel.onchange = async ()=>{
+      sel.disabled = true;
+      await updateEntry(sel.dataset.id, { status: sel.value });
+      renderAdmin();
+    };
+  });
+
+  c.querySelectorAll('img[data-lb]').forEach(img=>{
+    img.onclick = ()=> openLightbox(img.src);
+  });
+
+  c.querySelectorAll('.reply-toggle').forEach(btn=>{
+    btn.onclick = ()=>{
+      const row = document.getElementById('replyRow-' + btn.dataset.id);
+      if(!row) return;
+      row.style.display = (row.style.display === 'none') ? 'flex' : 'none';
+    };
+  });
+
+  c.querySelectorAll('.saveReplyBtn').forEach(btn=>{
+    btn.onclick = async ()=>{
+      const input = document.getElementById('replyInput-' + btn.dataset.id);
+      const val = input ? input.value.trim() : '';
+      btn.disabled = true;
+      btn.textContent = 'Saving…';
+      await updateEntry(btn.dataset.id, { reply: val || null });
+      renderAdmin();
+    };
+  });
+
+  c.querySelectorAll('.delete-btn').forEach(btn=>{
+    btn.onclick = ()=>{
+      const id = btn.dataset.id;
+      const row = document.getElementById('deleteRow-' + id);
+      if(!row) return;
+      row.innerHTML = `
+        <div class="confirm-row">
+          Delete this permanently?
+          <button class="confirm-yes" data-id="${esc(id)}">Yes, delete</button>
+          <button class="confirm-no" data-id="${esc(id)}">Cancel</button>
+        </div>
+      `;
+      row.querySelector('.confirm-yes').onclick = async (ev)=>{
+        ev.currentTarget.textContent = 'Deleting…';
+        await deleteEntry(id);
+        renderAdmin();
+      };
+      row.querySelector('.confirm-no').onclick = ()=>{ row.innerHTML = ''; };
+    };
+  });
+}
+
+document.querySelectorAll('.tab').forEach(t=>{
+  t.onclick = ()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    currentTab = t.dataset.tab;
+    if(currentTab === 'submit') renderSubmit();
+    else if(currentTab === 'track') renderTrack();
+    else if(currentTab === 'union') renderUnion();
+    else renderAdmin();
+  };
+});
+
+loadBanners();
+renderSubmit();
+</script>
+</body>
+</html>
