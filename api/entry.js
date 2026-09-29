@@ -1,5 +1,6 @@
 import { redis } from '../lib/redis.js';
 import { isValidSession } from '../lib/auth.js';
+import { K } from '../lib/keys.js';
 
 export const config = {
   api: {
@@ -17,7 +18,7 @@ export default async function handler(req, res) {
 
   try {
     if (req.method === 'GET') {
-      const entry = await redis.get('voicebox:' + id);
+      const entry = await redis.get(K.entry(id));
       if (!entry) return res.status(404).json({ error: 'not found' });
 
       const admin = await isValidSession(req);
@@ -31,7 +32,7 @@ export default async function handler(req, res) {
         return res.status(401).json({ error: 'unauthorized' });
       }
 
-      const entry = await redis.get('voicebox:' + id);
+      const entry = await redis.get(K.entry(id));
       if (!entry) return res.status(404).json({ error: 'not found' });
 
       const patch = req.body && typeof req.body === 'object' ? req.body : {};
@@ -55,7 +56,7 @@ export default async function handler(req, res) {
       }
 
       updated.updatedAt = Date.now();
-      await redis.set('voicebox:' + id, updated);
+      await redis.set(K.entry(id), updated);
       return res.status(200).json(updated);
     }
 
@@ -64,13 +65,13 @@ export default async function handler(req, res) {
         return res.status(401).json({ error: 'unauthorized' });
       }
 
-      const entry = await redis.get('voicebox:' + id);
+      const entry = await redis.get(K.entry(id));
       if (!entry) return res.status(404).json({ error: 'not found' });
 
-      await redis.del('voicebox:' + id);
-      const ids = (await redis.get('voicebox:index')) || [];
+      await redis.del(K.entry(id));
+      const ids = (await redis.get(K.index())) || [];
       const newIds = Array.isArray(ids) ? ids.filter((x) => x !== id) : [];
-      await redis.set('voicebox:index', newIds);
+      await redis.set(K.index(), newIds);
       return res.status(200).json({ ok: true });
     }
 

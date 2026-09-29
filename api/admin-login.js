@@ -1,4 +1,5 @@
 import { redis } from '../lib/redis.js';
+import { K } from '../lib/keys.js';
 import crypto from 'crypto';
 
 const MAX_ATTEMPTS = 8;
@@ -31,7 +32,7 @@ export default async function handler(req, res) {
 
     const ip = String(req.headers['x-forwarded-for'] || '')
       .split(',')[0].trim() || 'unknown';
-    const failKey = 'login:fail:' + ip;
+    const failKey = K.loginFail(ip);
 
     let fails = 0;
     try { fails = (await redis.get(failKey)) || 0; } catch { fails = 0; }
@@ -51,7 +52,7 @@ export default async function handler(req, res) {
     try { await redis.del(failKey); } catch {}
 
     const token = crypto.randomBytes(24).toString('hex');
-    await redis.set('session:' + token, true, { ex: 60 * 60 * 12 });
+    await redis.set(K.session(token), true, { ex: 60 * 60 * 12 });
 
     return res.status(200).json({ token });
   } catch (err) {

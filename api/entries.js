@@ -1,5 +1,6 @@
 import { redis } from '../lib/redis.js';
 import { isValidSession } from '../lib/auth.js';
+import { K } from '../lib/keys.js';
 
 export const config = {
   api: {
@@ -32,14 +33,14 @@ export default async function handler(req, res) {
       const meta = req.query.meta === '1';
       const admin = await isValidSession(req);
 
-      const ids = (await redis.get('voicebox:index')) || [];
+      const ids = (await redis.get(K.index())) || [];
       if (!Array.isArray(ids) || ids.length === 0) return res.status(200).json([]);
 
       let raw;
       try {
-        raw = await redis.mget(...ids.map((id) => 'voicebox:' + id));
+        raw = await redis.mget(...ids.map((id) => K.entry(id)));
       } catch {
-        raw = await Promise.all(ids.map((id) => redis.get('voicebox:' + id)));
+        raw = await Promise.all(ids.map((id) => redis.get(K.entry(id))));
       }
 
       const entries = [];
@@ -84,7 +85,7 @@ export default async function handler(req, res) {
 
       const contact = entry.contact ? String(entry.contact).trim().slice(0, 200) : null;
 
-      if (await redis.get('voicebox:' + id)) {
+      if (await redis.get(K.entry(id))) {
         return res.status(409).json({ error: 'duplicate id' });
       }
 
@@ -98,12 +99,12 @@ export default async function handler(req, res) {
         ts: Date.now()
       };
 
-      await redis.set('voicebox:' + id, record);
+      await redis.set(K.entry(id), record);
 
-      const ids = (await redis.get('voicebox:index')) || [];
+      const ids = (await redis.get(K.index())) || [];
       const list = Array.isArray(ids) ? ids.filter((x) => x !== id) : [];
       list.unshift(id);
-      await redis.set('voicebox:index', list);
+      await redis.set(K.index(), list);
 
       return res.status(200).json({ ok: true, id });
     }
