@@ -9,7 +9,7 @@ export const config = {
 };
 
 const STATUSES = ['received', 'review', 'resolved'];
-const ID_RE = /^AMV-[A-Z0-9]{6}$/;
+const ID_RE = /^ARC-[A-Z0-9]{6}$/;
 
 export default async function handler(req, res) {
   const id = String(req.query.id || '').toUpperCase().trim();

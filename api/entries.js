@@ -13,7 +13,7 @@ const CATEGORIES = [
   'Washrooms', 'Sports', 'Library', 'Girls Safety', 'Other'
 ];
 const URGENCIES = ['routine', 'attention', 'urgent'];
-const ID_RE = /^AMV-[A-Z0-9]{6}$/;
+const ID_RE = /^ARC-[A-Z0-9]{6}$/;
 const MAX_IMAGE_CHARS = 1_500_000;
 
 function shape(entry, { meta, admin }) {
